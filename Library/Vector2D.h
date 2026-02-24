@@ -30,6 +30,8 @@ public:
     /// <returns></returns>
     Vector2D operator-(const Vector2D& other);
 
+    Vector2D operator*(float scalar);
+
     /// <summary>
     /// 角度から単位ベクトルを作る
     /// </summary>

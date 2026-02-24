@@ -59,6 +59,12 @@ Vector2D Vector2D::operator-(const Vector2D& other) {
     return Subtract(other);
 }
 
+
+
+Vector2D Vector2D::operator*(float scalar) {
+    return Vector2D(x_ * scalar, y_ * scalar);
+}
+
 Vector2D Vector2D::FromAngle(float angle) {
     return {
         cos(angle),
