@@ -22,13 +22,13 @@ struct Matrix2D {
     }
 
     //// ïΩçsà⁄ìÆçsóÒÇçÏÇÈ
-    inline Matrix2D Translation(const Location2D& t)
+    static Matrix2D Translation(const Location2D& t)
     {
         return { 1, 0, t.x_,
                 0, 1, t.y_ };
     }
 
-    inline Matrix2D Multiply(const Matrix2D& a, const Matrix2D& b)
+    static Matrix2D Multiply(const Matrix2D& a, const Matrix2D& b)
     {
         return {
             a.m00 * b.m00 + a.m01 * b.m10,
@@ -48,7 +48,7 @@ struct Matrix2D {
     ////[m.m00 m.m01, m.tx][v.x]
     ////[m.m10 m.m11, m.ty][v.y] = ????
     ////[0,    0,     1   ][1  ]
-    inline Location2D TransformPoint(const Location2D& v, const Matrix2D& m)
+    static Location2D TransformPoint(const Location2D& v, const Matrix2D& m)
     {
         Location2D result(0, 0);
         result.x_ = m.m00 * v.x_ + m.m01 * v.y_ + m.tx;
