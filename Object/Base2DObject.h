@@ -13,8 +13,9 @@ protected:
     float omega_; //‰ñ“]‘¬“x
     float angle_; //‰ñ“]Šp
 public:
-    Base2DObject();
-    Base2DObject(const std::string& name, const Location2D& location, const Vector2D& vector, const bool& isAlive);
+    Base2DObject(const std::string& name, const Location2D& location, const Vector2D& vector, const Vector2D& dir,
+                    float radius, float omega, const bool& isAlive);
+    Base2DObject(const std::string& name, const Location2D& location, const Vector2D& vector, bool isAlive);
     ~Base2DObject();
 
     Location2D GetLocation() { return location_; };
