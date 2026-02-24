@@ -8,3 +8,5 @@
 *.txt
 /imgui.ini
 /.vs/AsteroidsGame/v17
+/.vs/AsteroidsGame
+/AsteroidsGame/x64/Debug
