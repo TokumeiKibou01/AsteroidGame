@@ -147,17 +147,22 @@
     <ClInclude Include="DebugWindow\ImGUI\imstb_textedit.h" />
     <ClInclude Include="DebugWindow\ImGUI\imstb_truetype.h" />
     <ClInclude Include="DebugWindow\Win32\DebugWin32Window.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Library\Location2D.h" />
     <ClInclude Include="Library\Vector2D.h" />
     <ClInclude Include="Manager\AudioManager.h" />
     <ClInclude Include="Manager\ObjectManager.h" />
     <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="MathUtil.h" />
+    <ClInclude Include="Matrix2D.h" />
+    <ClInclude Include="MyDxLib.h" />
     <ClInclude Include="Object\Base2DObject.h" />
     <ClInclude Include="Object\BaseObject.h" />
     <ClInclude Include="Object\BoxObject.h" />
+    <ClInclude Include="Object\Player.h" />
     <ClInclude Include="Scene\BaseScene.h" />
     <ClInclude Include="Scene\BootScene.h" />
+    <ClInclude Include="Scene\RunningScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AppMain.cpp" />
@@ -172,6 +177,7 @@
     <ClCompile Include="DebugWindow\ImGUI\imgui_tables.cpp" />
     <ClCompile Include="DebugWindow\ImGUI\imgui_widgets.cpp" />
     <ClCompile Include="DebugWindow\Win32\DebugWin32Window.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Library\Location2D.cpp" />
     <ClCompile Include="Library\Vector2D.cpp" />
     <ClCompile Include="Manager\AudioManager.cpp" />
@@ -180,8 +186,10 @@
     <ClCompile Include="Object\Base2DObject.cpp" />
     <ClCompile Include="Object\BaseObject.cpp" />
     <ClCompile Include="Object\BoxObject.cpp" />
+    <ClCompile Include="Object\Player.cpp" />
     <ClCompile Include="Scene\BaseScene.cpp" />
     <ClCompile Include="Scene\BootScene.cpp" />
+    <ClCompile Include="Scene\RunningScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

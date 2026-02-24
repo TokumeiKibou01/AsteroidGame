@@ -39,6 +39,8 @@ void BootScene::Init() {
 
     AudioManager& audioManager = AudioManager::GetInstance();
     audioManager.PlayAudio("Bossa_Latte.mp3");
+
+    
 }
 
 void BootScene::Release() {

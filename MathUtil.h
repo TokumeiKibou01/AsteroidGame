@@ -15,6 +15,10 @@ namespace MathUtil {
         return(radian * (180.0f / PI_F));
     }
 
+    inline Vector2D FromAngle(float rad) {
+        return { cos(rad), sin(rad) };
+    }
+
     inline Location2D WorldToScreen(const Location2D& worldPos) {
         Location2D result;
         result.x_ = worldPos.x_;

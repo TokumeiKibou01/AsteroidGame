@@ -9,6 +9,7 @@
 #include "DebugWindow/ImGUI/imgui_impl_dx11.h"
 #include "DebugWindow/ImGUI/imgui_impl_win32.h"
 #include "Manager/AudioManager.h"
+#include "MyDxLib.h"
 
 int InitApp();
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -16,17 +17,28 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg
 namespace {
     SceneManager& sceneManager = SceneManager::GetInstance();
     ObjectManager objManager = ObjectManager::GetInstance();
+    int crrTime; //ç°ÇÃéûä‘
+    int prevTime; //ëOÇÃéûä‘
+    
 }
+
+float DeltaTime = 0.0f;
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow) {
 	if (InitApp() != 0) {
 		return -1;
 	}
 
-    DebugWin32Window::GetInstance().runThread(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
+    // DebugWin32Window::GetInstance().runThread(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
+    crrTime = GetNowCount();
+    prevTime = GetNowCount();
 	
 	while (true) {
 		ClearDrawScreen();
+
+        crrTime = GetNowCount();
+        DeltaTime = (crrTime - prevTime) / 1000.0f;
+        prevTime = crrTime;
 
         ImGui_ImplDX11_NewFrame();
         ImGui_ImplWin32_NewFrame();
