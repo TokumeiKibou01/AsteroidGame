@@ -24,6 +24,7 @@
     <ProjectGuid>{cc8fc41b-f949-449e-b3df-32b4529f2285}</ProjectGuid>
     <RootNamespace>MyDxLib</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>AsteroidsGame</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
