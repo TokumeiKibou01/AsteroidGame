@@ -1,4 +1,6 @@
 #pragma once
+#include "Vector2D.h"
+
 class Location2D {
 private:
 public:
@@ -21,6 +23,8 @@ public:
     /// <param name="otherLoc">‰ÁZ‚µ‚½‚¢Location2D‚ğ“ü‚ê‚éB</param>
     /// <returns></returns>
     Location2D operator+(const Location2D& otherLoc);
+
+    Location2D operator+(const Vector2D& otherVec);
 
     /// <summary>
     /// À•W“¯m‚ğŒ¸Z‚·‚éŠÖ”B

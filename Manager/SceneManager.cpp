@@ -1,11 +1,19 @@
 #include "SceneManager.h"
 #include "../Scene/BootScene.h"
+#include "../Scene/TitleScene.h"
+#include "../Scene/RunningScene.h"
+#include "../Scene/GameOverScene.h"
 
 SceneManager::SceneManager() {
     currentScene_ = nullptr;
 
     sceneVector_.push_back(new BootScene());
+    sceneVector_.push_back(new TitleScene());
+    sceneVector_.push_back(new RunningScene());
+    sceneVector_.push_back(new GameOverScene());
+    
     ChangeScene("BootScene");
+    ChangeScene("TitleScene");
 }
 
 SceneManager::~SceneManager() {}

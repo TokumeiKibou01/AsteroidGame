@@ -1,5 +1,6 @@
 #include "Location2D.h"
 #include <cmath>
+#include "Vector2D.h"
 
 Location2D::Location2D() {
     x_ = 0.0f;
@@ -17,6 +18,11 @@ float Location2D::Distance(const Location2D& otherLoc) {
 }
 
 Location2D Location2D::operator+(const Location2D& otherLoc) {
+    Location2D result = Location2D(x_ + otherLoc.x_, y_ + otherLoc.y_);
+    return result;
+}
+
+Location2D Location2D::operator+(const Vector2D& otherLoc) {
     Location2D result = Location2D(x_ + otherLoc.x_, y_ + otherLoc.y_);
     return result;
 }

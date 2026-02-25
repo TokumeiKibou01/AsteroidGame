@@ -8,22 +8,8 @@
 #include "../Input.h"
 #include <stdexcept>
 
-namespace {
-    const float ACC = 400.0f; //加速度
-    const float DAMP = 0.995f; //抵抗（0～1）
-    const float MAx__SPEED = 500.0f; //速度の上限
-}
-
-Player::Player() {
-    throw std::runtime_error("引数ありのコンストラクタから呼んでください");
-}
-
 Player::Player(const Location2D& loc, const Vector2D& vel, const Vector2D& dir, float radius, float omega)
     : Base2DObject("Player", loc, vel, dir, radius, omega, true) {
-    direction_ = dir;
-    radius_ = radius;
-    omega_ = omega;
-    angle_ = 0.0f;
     vertex_[0] = { 0, 0 }; 
     vertex_[1] = { 0, 0 }; 
     vertex_[2] = { 0, 0 };
@@ -61,8 +47,7 @@ void Player::Update() {
         angle_ += MathUtil::PI_F * 2;
     }
 
-    for (int i = 0; i < 3; i++)
-    {
+    for (int i = 0; i < 3; i++) {
         //回転行列を使って回転させる
         Matrix2D rMat = Matrix2D::Rotation(angle_);
         Matrix2D tMat = Matrix2D::Translation({ -location_.x_, -location_.y_ }); //原点に移動させる行列
@@ -71,24 +56,24 @@ void Player::Update() {
         vertex_[i] = Matrix2D::TransformPoint(vertex_[i], M);
     }
     // angle_ から前方向（数学座標）を作る
-    direction_ = MathUtil::FromAngle(angle_ + MathUtil::PI_F * 2 / 2);
+    direction_ = MathUtil::FromAngle(angle_ + (MathUtil::PI_F / 2) );
 
     // 上キーで推進（加速度）
     if (Input::IsKeepKeyDown(KEY_INPUT_SPACE))
     {
-        vector_.x_ += direction_.x_ * ACC * dt;
-        vector_.y_ += direction_.y_ * ACC * dt;
+        vector_.x_ += direction_.x_ * PlayerParams::ACC * dt;
+        vector_.y_ += direction_.y_ * PlayerParams::ACC * dt;
     }
 
     // 抵抗（任意）
-    vector_.x_ *= DAMP;
-    vector_.y_ *= DAMP;
+    vector_.x_ *= PlayerParams::DAMP;
+    vector_.y_ *= PlayerParams::DAMP;
 
     // 速度制限（任意）
     float sp2 = vector_.x_ * vector_.x_ + vector_.y_ * vector_.y_;
-    float max_2 = MAx__SPEED * MAx__SPEED;
+    float max_2 = PlayerParams::MAx__SPEED * PlayerParams::MAx__SPEED;
     if (sp2 > max_2) {
-        float inv = MAx__SPEED / sqrtf(sp2);
+        float inv = PlayerParams::MAx__SPEED / sqrtf(sp2);
         vector_.x_ *= inv;
         vector_.y_ *= inv;
     }
@@ -117,5 +102,18 @@ void Player::Update() {
 }
 
 void Player::Draw() {
+    Location2D scrPos[3];
+    scrPos[0] = MathUtil::WorldToScreen(vertex_[0]);
+    scrPos[1] = MathUtil::WorldToScreen(vertex_[1]);
+    scrPos[2] = MathUtil::WorldToScreen(vertex_[2]);
 
+    DrawTriangleAA(
+        scrPos[0].x_, scrPos[0].y_,
+        scrPos[1].x_, scrPos[1].y_,
+        scrPos[2].x_, scrPos[2].y_,
+        GetColor(255, 0, 0), FALSE, 2.0
+    );
+
+    DrawFormatString(50, 50, GetColor(255, 255, 255), "RotAngle:%lf", angle_);
+    DrawFormatString(50, 80, GetColor(255, 255, 255), "Velocity:(%lf, %lf)", vector_.x_, vector_.y_);
 }

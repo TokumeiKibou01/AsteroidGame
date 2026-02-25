@@ -31,6 +31,7 @@ void ObjectManager::RemoveObject(std::string sceneName, BaseObject* obj) {
 void ObjectManager::UpdateObject(std::string sceneName) {
     auto& objVector = objEachSceneMap.at(sceneName);
     for (auto& obj : objVector) {
+        if (obj == nullptr) continue;
         obj->Update();
     }
 }

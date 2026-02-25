@@ -10,6 +10,7 @@
 #include "DebugWindow/ImGUI/imgui_impl_win32.h"
 #include "Manager/AudioManager.h"
 #include "MyDxLib.h"
+#include "Input.h"
 
 int InitApp();
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -43,6 +44,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
         ImGui_ImplDX11_NewFrame();
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
+
+        Input::KeyStateUpdate();
 
         sceneManager.UpdateScene();
         sceneManager.DrawScene();
@@ -78,9 +81,10 @@ int InitApp() {
 	ChangeWindowMode(true);
 	SetWindowSizeChangeEnableFlag(false, false);
 	SetMainWindowText("TITLE");
-	SetGraphMode(1280, 720, 32);
+	SetGraphMode(Screen::WIDTH, Screen::HEIGHT, 32);
 	SetWindowSizeExtendRate(1.0);
 	SetBackgroundColor(0, 0, 0);
+    ChangeFontType(DX_FONTTYPE_ANTIALIASING_EDGE_8X8);
 
 	if (DxLib_Init() == -1) {
 		DxLib_End();

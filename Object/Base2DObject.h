@@ -13,7 +13,6 @@ protected:
     float omega_; //‰ñ“]‘¬“x
     float angle_; //‰ñ“]Šp
 public:
-    Base2DObject();
     Base2DObject(const std::string& name, const Location2D& location, const Vector2D& vector, const Vector2D& dir,
                     float radius, float omega, const bool& isAlive);
     Base2DObject(const std::string& name, const Location2D& location, const Vector2D& vector, bool isAlive);
@@ -31,5 +30,8 @@ public:
     float GetOmega() { return omega_; }
     void SetAngle(float angle) { angle_ = angle; }
     float GetAngle() { return angle_; }
+
+    virtual bool IsAABBCollation(const Location2D& loc);
+    virtual bool IsDistanceCollation(Base2DObject* obj);
 };
 
