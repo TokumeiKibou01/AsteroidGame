@@ -2,6 +2,7 @@
 #include <cmath>
 #include "Library/Location2D.h"
 #include "MyDxLib.h"
+#include "Matrix2D.h"
 
 namespace MathUtil {
 
@@ -17,6 +18,14 @@ namespace MathUtil {
 
     inline Vector2D FromAngle(float rad) {
         return { cos(rad), sin(rad) };
+    }
+
+    inline Location2D TransformPoint(const Location2D& v, const Matrix2D& m)
+    {
+        Location2D res(0, 0);
+        res.x_ = m.m00 * v.x_ + m.m01 * v.y_ + m.tx;
+        res.y_ = m.m10 * v.x_ + m.m11 * v.y_ + m.ty;
+        return res;
     }
 
     inline Location2D WorldToScreen(const Location2D& worldPos) {
