@@ -84,6 +84,7 @@ int InitApp() {
 	SetGraphMode(Screen::WIDTH, Screen::HEIGHT, 32);
 	SetWindowSizeExtendRate(1.0);
 	SetBackgroundColor(0, 0, 0);
+    ChangeFontType(DX_FONTTYPE_ANTIALIASING_EDGE_8X8);
 
 	if (DxLib_Init() == -1) {
 		DxLib_End();
