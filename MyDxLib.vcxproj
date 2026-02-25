@@ -150,6 +150,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Library\Location2D.h" />
     <ClInclude Include="Library\ObjectFactory.h" />
+    <ClInclude Include="Library\TextUtil.h" />
     <ClInclude Include="Library\Vector2D.h" />
     <ClInclude Include="Manager\AudioManager.h" />
     <ClInclude Include="Manager\ObjectManager.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="Object\Player.cpp" />
     <ClCompile Include="Scene\BaseScene.cpp" />
     <ClCompile Include="Scene\BootScene.cpp" />
+    <ClCompile Include="Scene\GameOverScene.cpp" />
     <ClCompile Include="Scene\RunningScene.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
   </ItemGroup>
