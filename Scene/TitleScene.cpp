@@ -5,6 +5,7 @@
 #include "../MyDxLib.h"
 #include "../Input.h"
 #include "../Manager/SceneManager.h"
+#include "../Library/TextUtil.h"
 
 namespace {
     
@@ -29,7 +30,8 @@ void TitleScene::Update() {
 void TitleScene::Draw() {
     if (count % 100 < 50) {
         int fontSize = GetFontSize();
-        DrawString(Screen::WIDTH / 2 - fontSize*10, Screen::HEIGHT / 2, "ゲームを開始するにはスペースキーを押してください", GetColor(255, 255, 255));
+        TextUtil::DrawFixText(TextDrawType::CENTER, Screen::WIDTH / 2, Screen::HEIGHT / 2, 30, GetColor(255, 255, 255), "ゲームを開始するにはスペースキーを押してください");
+        
     }
 }
 
