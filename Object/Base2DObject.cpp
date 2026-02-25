@@ -21,3 +21,21 @@ Base2DObject::Base2DObject(const std::string& name, const Location2D& location, 
 
 Base2DObject::~Base2DObject() {
 }
+
+bool Base2DObject::IsAABBCollation(const Location2D& loc) {
+    int leftX = location_.x_, leftY = location_.y_;
+    int rightX = location_.x_ + (radius_ + radius_), rightY = location_.y_ + (radius_ + radius_);
+    if (loc.x_ > leftX && loc.y_ > leftY && loc.x_ < rightX && loc.y_ < rightY) { 
+        return true;
+    }
+
+    return false;
+}
+
+bool Base2DObject::IsDistanceCollation(Base2DObject* obj) {
+    float distance = location_.Distance(obj->GetLocation());
+    if (distance < radius_ + obj->GetRadius()) {
+        return true;
+    }
+    return false;
+}

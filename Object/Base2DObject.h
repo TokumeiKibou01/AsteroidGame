@@ -30,5 +30,8 @@ public:
     float GetOmega() { return omega_; }
     void SetAngle(float angle) { angle_ = angle; }
     float GetAngle() { return angle_; }
+
+    virtual bool IsAABBCollation(const Location2D& loc);
+    virtual bool IsDistanceCollation(Base2DObject* obj);
 };
 

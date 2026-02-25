@@ -2,6 +2,8 @@
 #include "../MyDxLib.h"
 #include "../MathUtil.h"
 #include <DxLib.h>
+#include "../Manager/ObjectManager.h"
+#include "Enemy.h"
 
 Bullet::Bullet(const Location2D& loc, const Vector2D& vel, float radius, unsigned int color, float lifeTime)
     : Base2DObject("Bullet", loc, vel, Vector2D(), -1, -1, true) {
@@ -24,6 +26,15 @@ void Bullet::Update() {
     // 移動（数学座標）
     location_.x_ += vector_.x_ * dt;
     location_.y_ += vector_.y_ * dt;
+
+
+    ObjectManager& objManager = ObjectManager::GetInstance();
+    for (Enemy* enemy : objManager.GetDrawObjects<Enemy>("RunningScene")) {
+        if (IsDistanceCollation(enemy)) {
+            objManager.RemoveObject("RunningScene", enemy);
+        }
+    }
+
 
     if (location_.x_ < -radius_)           location_.x_ += (Screen::WIDTH + radius_ * 2.0f);
     else if (location_.x_ > Screen::WIDTH + radius_)   location_.x_ -= (Screen::WIDTH + radius_ * 2.0f);
