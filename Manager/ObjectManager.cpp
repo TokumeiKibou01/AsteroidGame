@@ -20,15 +20,17 @@ void ObjectManager::RemoveObject(std::string sceneName, BaseObject* obj) {
     for (auto it = sceneObjVector.begin(); it != sceneObjVector.end(); ) {
         if ((*it) == obj && (*it)->IsAlive() && *it != nullptr) {
             obj->Dead();
+            break;
         } else {
-            it++;
+            ++it;
         }
     }
 }
 
 void ObjectManager::UpdateObject(std::string sceneName) {
     auto& objVector = objEachSceneMap.at(sceneName);
-    for (auto& obj : objVector) {
+    for (int i = 0; i < objVector.size(); i++) {
+        auto& obj = objVector[i];
         if (obj == nullptr) continue;
         obj->Update();
     }
@@ -39,14 +41,15 @@ void ObjectManager::UpdateObject(std::string sceneName) {
             delete* it;
             it = sceneObjVector.erase(it);
         } else {
-            it++;
+            ++it;
         }
     }
 }
 
 void ObjectManager::DrawObject(std::string sceneName) {
     auto& objVector = objEachSceneMap.at(sceneName);
-    for (auto& obj : objVector) {
+    for (int i = 0; i < objVector.size(); i++) {
+        auto& obj = objVector[i];
         if (obj == nullptr) continue;
         obj->Draw();
     }
