@@ -5,6 +5,7 @@
 #include "../Object/ExplosionEffect.h"
 #include "../Object/Enemy.h"
 #include "../Library/ObjectFactory.h"
+#include "../Input.h"
 
 RunningScene::RunningScene()
     : BaseScene("RunningScene") {
@@ -18,11 +19,11 @@ void RunningScene::Update() {
     objManager.UpdateObject(GetName());
     auto player = objManager.GetDrawObject<Player>(GetName());
 
-    if (CheckHitKey(KEY_INPUT_Z)) {
+    if (Input::IsKeyDown(KEY_INPUT_A)) {
         objManager.AddObject(GetName(), new Enemy(EnemyType::LARGE, 8));
     }
 
-    if (player && CheckHitKey(KEY_INPUT_A)) {
+    if (player && Input::IsKeyDown(KEY_INPUT_Z)) {
         ObjectFactory::spawnBullet(this, player->GetLocation(), player->GetDirection(), player->GetRadius() + 8.0f);
     }
 }
