@@ -33,6 +33,23 @@ namespace ObjectFactory {
         objManager.AddObject("RunningScene", enemy);
     }
 
+    inline void spawnDivideEnemy(Enemy* enemy, int count) {
+        ObjectManager& objManager = ObjectManager::GetInstance();
+
+        if (enemy->GetEnemyType() != EnemyType::SMALL) {
+            EnemyType type = enemy->GetEnemyType() == EnemyType::LARGE ? EnemyType::MEDIUM : EnemyType::SMALL;
+            for (int n = 0; n < count; n++) { // 大サイズの場合、中サイズ2体を出す
+                Enemy* newEnemy = new Enemy(type, 8);
+                Vector2D randomVel = { (float)(GetRand(200) - 100), (float)(GetRand(200) - 100) };
+                newEnemy->SetLocation(enemy->GetLocation());
+                newEnemy->SetVector(randomVel);
+                objManager.AddObject("RunningScene", newEnemy);
+            }
+        }
+
+        objManager.RemoveObject("RunningScene", enemy);
+    }
+
     inline void spawnBullet(BaseScene* scene, const Location2D& loc, const Vector2D& dir, const float offset) {
         ObjectManager& objManager = ObjectManager::GetInstance();
 

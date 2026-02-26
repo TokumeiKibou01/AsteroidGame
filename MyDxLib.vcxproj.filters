@@ -127,6 +127,13 @@
     <ClInclude Include="Object\Enemy.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="Library\TextUtil.h" />
+    <ClInclude Include="Scene\TitleScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\GameOverScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\Vector2D.cpp">
@@ -212,6 +219,12 @@
     </ClCompile>
     <ClCompile Include="Object\Enemy.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\TitleScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\GameOverScene.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

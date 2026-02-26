@@ -4,6 +4,7 @@
 #include <DxLib.h>
 #include "../Manager/ObjectManager.h"
 #include "Enemy.h"
+#include "../Library/ObjectFactory.h"
 
 Bullet::Bullet(const Location2D& loc, const Vector2D& vel, float radius, unsigned int color, float lifeTime)
     : Base2DObject("Bullet", loc, vel, Vector2D(), -1, -1, true) {
@@ -32,7 +33,10 @@ void Bullet::Update() {
     ObjectManager& objManager = ObjectManager::GetInstance();
     for (Enemy* enemy : objManager.GetDrawObjects<Enemy>("RunningScene")) {
         if (IsDistanceCollation(enemy)) {
-            objManager.RemoveObject("RunningScene", enemy);
+            int count = GetRand(3) + 2; //1Å`4
+            ObjectFactory::spawnDivideEnemy(enemy, count);
+            Dead();
+            break;
         }
     }
 
