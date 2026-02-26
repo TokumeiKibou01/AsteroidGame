@@ -13,6 +13,7 @@ Enemy::Enemy(EnemyType type, int segment)
     location_ = { (float)GetRand(Screen::WIDTH), (float)GetRand(Screen::HEIGHT) };
     vector_ = { (float)(GetRand(200) - 100), (float)(GetRand(200) - 100) };
     segment_ = segment < EnemyParams::SEGMENT_MIN ? EnemyParams::SEGMENT_MIN : segment;   
+    enemyType_ = type;
     RandomRadius(type);
     vertex_.resize(segment_);
     angle_ = 0.0f;
