@@ -21,5 +21,6 @@ public:
 
     std::string GetName() { return name_; };
     bool IsAlive() { return isAlive_; };
+    void Dead() { isAlive_ = false; }
 };
 

@@ -18,11 +18,9 @@ void ObjectManager::AddObject(std::string sceneName, BaseObject* obj) {
 void ObjectManager::RemoveObject(std::string sceneName, BaseObject* obj) {
     std::vector<BaseObject*>& sceneObjVector = objEachSceneMap.at(sceneName);
     for (auto it = sceneObjVector.begin(); it != sceneObjVector.end(); ) {
-        if ((*it) == obj) {
-            delete *it;
-            it = sceneObjVector.erase(it);
-        }
-        else {
+        if ((*it) == obj && (*it)->IsAlive() && *it != nullptr) {
+            obj->Dead();
+        } else {
             it++;
         }
     }
@@ -33,6 +31,16 @@ void ObjectManager::UpdateObject(std::string sceneName) {
     for (auto& obj : objVector) {
         if (obj == nullptr) continue;
         obj->Update();
+    }
+
+    std::vector<BaseObject*>& sceneObjVector = objEachSceneMap.at(sceneName);
+    for (auto it = sceneObjVector.begin(); it != sceneObjVector.end(); ) {
+        if (!(*it)->IsAlive() && *it != nullptr) {
+            delete* it;
+            it = sceneObjVector.erase(it);
+        } else {
+            it++;
+        }
     }
 }
 

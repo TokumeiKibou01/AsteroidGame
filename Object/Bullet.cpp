@@ -26,6 +26,7 @@ void Bullet::Update() {
     // 移動（数学座標）
     location_.x_ += vector_.x_ * dt;
     location_.y_ += vector_.y_ * dt;
+    isAlive_ = (life_ > 0.0f);
 
 
     ObjectManager& objManager = ObjectManager::GetInstance();
@@ -42,7 +43,6 @@ void Bullet::Update() {
     if (location_.y_ < -radius_)           location_.y_ += (Screen::HEIGHT + radius_ * 2.0f);
     else if (location_.y_ > Screen::HEIGHT + radius_)   location_.y_ -= (Screen::HEIGHT + radius_ * 2.0f);
 
-    isAlive_ = (life_ > 0.0f);
 }
 
 void Bullet::Draw() {
