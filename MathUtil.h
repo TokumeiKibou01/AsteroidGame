@@ -60,4 +60,19 @@ namespace MathUtil {
             return (end - start) * rate + start;
         }
     }
+
+    namespace Rand {
+
+        inline float Rand01() {
+            return (float)GetRand(10000) / 10000.0f;
+        }
+
+        inline float RandRange(float min, float max) {
+            return min + (max - min) * Rand01();
+        }
+
+        inline int RandRangeInt(int min, int max) {
+            return min + GetRand(max - min);
+        }
+    }
 }

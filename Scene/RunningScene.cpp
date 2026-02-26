@@ -8,10 +8,6 @@
 
 RunningScene::RunningScene()
     : BaseScene("RunningScene") {
-    ObjectManager& instance = ObjectManager::GetInstance();
-    Player* player = new Player(PlayerParams::GetStartLoc(), PlayerParams::GetStartVel(), PlayerParams::GetStartDir(),
-                                PlayerParams::RADIUS, PlayerParams::OMEGA);
-    instance.AddObject(GetName(), player);
 }
 
 RunningScene::~RunningScene() {
@@ -42,6 +38,14 @@ void RunningScene::Draw() {
 }
 
 void RunningScene::Init() {
+    ObjectManager& objManager = ObjectManager::GetInstance();
+    Player* player = new Player(PlayerParams::GetStartLoc(), PlayerParams::GetStartVel(), PlayerParams::GetStartDir(),
+        PlayerParams::RADIUS, PlayerParams::OMEGA);
+    objManager.AddObject(GetName(), player);
+
+    for (int i = 0; i < EnemyParams::ENEMY_MAX; i++) {
+        ObjectFactory::spawnEnemy();
+    }
 }
 
 void RunningScene::Release() {

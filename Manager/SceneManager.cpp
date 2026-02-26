@@ -26,6 +26,7 @@ SceneManager& SceneManager::GetInstance() {
 void SceneManager::ChangeScene(const std::string& sceneName) {
     for (auto& scene : sceneVector_) {
         if (scene->GetName() == sceneName) {
+            scene->Init();
             currentScene_ = scene;
             break;
         }

@@ -9,7 +9,24 @@ enum class EnemyType {
 };
 
 namespace EnemyParams {
-    const int SEGMENT_MIN = 8; //ç≈è¨ï™äÑêî
+    static const int ENEMY_MAX = 50;
+    // å©ÇΩñ⁄
+    constexpr int   SEGMENT_MIN = 12;
+    constexpr int   SEGMENT_MAX = 20;
+    constexpr float JITTER_MIN = 0.25f;
+    constexpr float JITTER_MAX = 0.45f;
+
+    // ÉTÉCÉY
+    constexpr float R_MIN = 25.0f;
+    constexpr float R_MAX = 60.0f;
+
+    // à⁄ìÆ
+    constexpr float SPEED_MIN = 80.0f;
+    constexpr float SPEED_MAX = 220.0f;
+
+    // âÒì]
+    constexpr float OMEGA_MIN = -1.2f; // rad/sec
+    constexpr float OMEGA_MAX = 1.2f;
     const float MIN_RADIUS = 25.0f; //ç≈è¨îºåa
     const float MAX_OMEGA = 2.0f; //ç≈ëÂäpë¨ìx
 
