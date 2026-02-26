@@ -5,11 +5,18 @@
 #include "../MathUtil.h"
 #include "../Object/Bullet.h"
 #include "../Scene/BaseScene.h"
+#include "../Object/ExplosionEffect.h"
 
 namespace ObjectFactory {
 
     inline void spawnPlayer() {
 
+    }
+
+    inline void spawnEffect(const Location2D& loc) {
+        ExplosionEffect* effect = new ExplosionEffect(loc);
+        ObjectManager& objManager = ObjectManager::GetInstance();
+        objManager.AddObject("RunningScene", effect);
     }
 
     inline void spawnEnemy() {
@@ -48,6 +55,7 @@ namespace ObjectFactory {
         }
 
         objManager.RemoveObject("RunningScene", enemy);
+        spawnEffect(enemy->GetLocation());
     }
 
     inline void spawnBullet(BaseScene* scene, const Location2D& loc, const Vector2D& dir, const float offset) {
@@ -64,7 +72,4 @@ namespace ObjectFactory {
         objManager.AddObject(scene->GetName(), bullet);
     }
 
-    inline void spawnEffect() {
-
-    }
 }

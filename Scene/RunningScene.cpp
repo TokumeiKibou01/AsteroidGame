@@ -15,19 +15,14 @@ RunningScene::~RunningScene() {
 
 void RunningScene::Update() {
     ObjectManager& objManager = ObjectManager::GetInstance();
-    auto player = objManager.GetDrawObject<Player>(GetName());
     objManager.UpdateObject(GetName());
-
-    if (CheckHitKey(KEY_INPUT_SPACE)) {
-        Player* p = objManager.GetDrawObject<Player>(GetName());
-        objManager.AddObject(GetName(), new ExplosionEffect(p->GetLocation()));
-    }
+    auto player = objManager.GetDrawObject<Player>(GetName());
 
     if (CheckHitKey(KEY_INPUT_Z)) {
         objManager.AddObject(GetName(), new Enemy(EnemyType::LARGE, 8));
     }
 
-    if (CheckHitKey(KEY_INPUT_A)) {
+    if (player && CheckHitKey(KEY_INPUT_A)) {
         ObjectFactory::spawnBullet(this, player->GetLocation(), player->GetDirection(), player->GetRadius() + 8.0f);
     }
 }
