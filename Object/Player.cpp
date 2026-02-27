@@ -7,12 +7,14 @@
 #include <DxLib.h>
 #include "../Input.h"
 #include <stdexcept>
+#include "Enemy.h"
 
 Player::Player(const Location2D& loc, const Vector2D& vel, const Vector2D& dir, float radius, float omega)
     : Base2DObject("Player", loc, vel, dir, radius, omega, true) {
     vertex_[0] = { 0, 0 }; 
     vertex_[1] = { 0, 0 }; 
     vertex_[2] = { 0, 0 };
+    score_ = 0;
 }
 
 Player::~Player()
@@ -116,4 +118,29 @@ void Player::Draw() {
 
     DrawFormatString(50, 50, GetColor(255, 255, 255), "RotAngle:%lf", angle_);
     DrawFormatString(50, 80, GetColor(255, 255, 255), "Velocity:(%lf, %lf)", vector_.x_, vector_.y_);
+}
+
+void Player::AddScore(Enemy* enemy) {
+    EnemyType type = enemy->GetEnemyType();
+    score_ = score_ + PlayerParams::ENEMY_SCORE[(int)type];
+}
+
+void Player::AddScore(int score) {
+    score_ = score_ + score;
+}
+
+void Player::SubtractScore(int score) {
+    if (score_ - score >= 0) {
+        score_ = score_ - score;
+    }
+}
+
+void Player::SetScore(int score) {
+    if (score >= 0) {
+        score_ = score;
+    }
+}
+
+int Player::GetScore() {
+    return score_;
 }

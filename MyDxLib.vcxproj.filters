@@ -127,12 +127,14 @@
     <ClInclude Include="Object\Enemy.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="Library\TextUtil.h" />
     <ClInclude Include="Scene\TitleScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="Scene\GameOverScene.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TextUtil.h">
+      <Filter>Library</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

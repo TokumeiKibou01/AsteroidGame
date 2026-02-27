@@ -6,6 +6,7 @@
 #include "../Object/Enemy.h"
 #include "../Library/ObjectFactory.h"
 #include "../Input.h"
+#include "../Library/TextUtil.h"
 
 RunningScene::RunningScene()
     : BaseScene("RunningScene") {
@@ -30,7 +31,11 @@ void RunningScene::Update() {
 
 void RunningScene::Draw() {
     ObjectManager& objManager = ObjectManager::GetInstance();
+    auto player = objManager.GetDrawObject<Player>(GetName());
     objManager.DrawObject(GetName());
+
+    std::string formatText = "スコア：" + std::to_string(player->GetScore());
+    TextUtil::DrawFixText(TextDrawType::LEFT, 0, 0, 30, GetColor(255, 255, 255), formatText);
 }
 
 void RunningScene::Init() {
