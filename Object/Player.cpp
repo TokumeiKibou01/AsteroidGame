@@ -8,6 +8,8 @@
 #include "../Input.h"
 #include <stdexcept>
 #include "Enemy.h"
+#include "../Manager/ObjectManager.h"
+#include "../DebugWindow/ImGUI/imgui.h"
 
 Player::Player(const Location2D& loc, const Vector2D& vel, const Vector2D& dir, float radius, float omega)
     : Base2DObject("Player", loc, vel, dir, radius, omega, true) {
@@ -15,6 +17,7 @@ Player::Player(const Location2D& loc, const Vector2D& vel, const Vector2D& dir, 
     vertex_[1] = { 0, 0 }; 
     vertex_[2] = { 0, 0 };
     score_ = 0;
+    heart_ = PlayerParams::MAX_HEART;
 }
 
 Player::~Player()
@@ -118,6 +121,13 @@ void Player::Draw() {
 
     DrawFormatString(50, 50, GetColor(255, 255, 255), "RotAngle:%lf", angle_);
     DrawFormatString(50, 80, GetColor(255, 255, 255), "Velocity:(%lf, %lf)", vector_.x_, vector_.y_);
+
+    ObjectManager objManager = ObjectManager::GetInstance();
+    int playerHeart = GetHeart();
+    ImGui::Begin("Debug");
+    ImGui::SliderInt("ÉvÉåÉCÉÑÅ[", &playerHeart, 1, PlayerParams::MAX_HEART);
+    ImGui::End();
+    SetHeart(playerHeart);
 }
 
 void Player::AddScore(Enemy* enemy) {
@@ -143,4 +153,13 @@ void Player::SetScore(int score) {
 
 int Player::GetScore() {
     return score_;
+}
+
+void Player::SetHeart(int heart) {
+    if (heart < 0) heart = 0;
+    heart_ = heart;
+}
+
+int Player::GetHeart() {
+    return heart_;
 }

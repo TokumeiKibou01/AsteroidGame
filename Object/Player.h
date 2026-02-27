@@ -16,12 +16,14 @@ namespace PlayerParams {
     const float DAMP = 0.995f; //抵抗（0～1）
     const float MAx__SPEED = 500.0f; //速度の上限
     static int ENEMY_SCORE[3] = { 20, 50, 100 };
+    static int MAX_HEART = 5;
 }
 
 class Player : public Base2DObject {
 private:
     Location2D vertex_[3]; //3角形の頂点座標
     int score_;
+    int heart_;
 public:
     Player(const Location2D& loc, const Vector2D& vel, const Vector2D& dir, float radius, float omega);
     ~Player();
@@ -37,4 +39,7 @@ public:
     void SubtractScore(int score);
     void SetScore(int score);
     int GetScore();
+
+    void SetHeart(int heart);
+    int GetHeart();
 };

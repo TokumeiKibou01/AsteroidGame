@@ -5,6 +5,8 @@
 #include "../Library/Location2D.h"
 #include "../Library/Vector2D.h"
 #include "../MathUtil.h"
+#include "../Manager/ObjectManager.h"
+#include "../Object/Player.h"
 
 using namespace EnemyParams;
 
@@ -40,6 +42,13 @@ void Enemy::Update() {
     if (location_.y_ > Screen::HEIGHT) location_.y_ = 0;
 
     angle_ = angle_ + omega_ * dt;
+
+    ObjectManager& objManager = ObjectManager::GetInstance();
+    Player* player = objManager.GetDrawObject<Player>("RunningScene");
+    if (IsDistanceCollation(player)) {
+        player->SetHeart(player->GetHeart() - 1);
+        return;
+    }
 }
 
 void Enemy::Draw() {
