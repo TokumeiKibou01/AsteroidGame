@@ -54,3 +54,19 @@ void ObjectManager::DrawObject(std::string sceneName) {
         obj->Draw();
     }
 }
+
+void ObjectManager::ClearObjects(std::string sceneName) {
+    std::vector<BaseObject*>& sceneObjVector = objEachSceneMap.at(sceneName);
+    for (auto it = sceneObjVector.begin(); it != sceneObjVector.end(); ) {
+        if (*it != nullptr) {
+            delete* it;
+            it = sceneObjVector.erase(it);
+        } else {
+            ++it;
+        }
+    }
+}
+
+void ObjectManager::ClearAllObjects() {
+    objEachSceneMap.clear();
+}
