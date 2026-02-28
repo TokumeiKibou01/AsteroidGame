@@ -1,12 +1,12 @@
 #include "Enemy.h"
 #include <DxLib.h>
 #include "../MyDxLib.h"
-#include "../Matrix2D.h"
 #include "../Library/Location2D.h"
 #include "../Library/Vector2D.h"
-#include "../MathUtil.h"
 #include "../Manager/ObjectManager.h"
 #include "../Object/Player.h"
+#include "../Library/Matrix2D.h"
+#include "../Library/MathUtil.h"
 
 using namespace EnemyParams;
 

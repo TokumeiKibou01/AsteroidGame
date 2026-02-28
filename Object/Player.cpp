@@ -2,14 +2,13 @@
 #include "Player.h"
 #include "../Library/Location2D.h"
 #include "../Library/Vector2D.h"
-#include "../MathUtil.h"
-#include "../Matrix2D.h"
 #include <DxLib.h>
-#include "../Input.h"
 #include <stdexcept>
 #include "Enemy.h"
 #include "../Manager/ObjectManager.h"
 #include "../DebugWindow/ImGUI/imgui.h"
+#include "../Library/MathUtil.h"
+#include "../Library/Input.h"
 
 Player::Player(const Location2D& loc, const Vector2D& vel, const Vector2D& dir, float radius, float omega)
     : Base2DObject("Player", loc, vel, dir, radius, omega, true) {

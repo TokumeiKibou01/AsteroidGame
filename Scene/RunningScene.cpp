@@ -1,13 +1,13 @@
 ﻿#include "RunningScene.h"
 #include "BaseScene.h"
-#include "../Manager/ObjectManager.h"
 #include "../Object/Player.h"
 #include "../Object/ExplosionEffect.h"
 #include "../Object/Enemy.h"
-#include "../Library/ObjectFactory.h"
-#include "../Input.h"
-#include "../Library/TextUtil.h"
+#include "../Manager/ObjectManager.h"
 #include "../Manager/SceneManager.h"
+#include "../Library/ObjectFactory.h"
+#include "../Library/TextUtil.h"
+#include "../Library/Input.h"
 
 RunningScene::RunningScene()
     : BaseScene("RunningScene") {

@@ -1,7 +1,7 @@
 #include "Bullet.h"
 #include "../MyDxLib.h"
-#include "../MathUtil.h"
 #include <DxLib.h>
+#include "../Library/MathUtil.h"
 #include "../Manager/ObjectManager.h"
 #include "Enemy.h"
 #include "../Library/ObjectFactory.h"

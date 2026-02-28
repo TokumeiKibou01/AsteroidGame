@@ -2,11 +2,10 @@
 #include "TitleScene.h"
 #include "BaseScene.h"
 #include <DxLib.h>
-#include "../MathUtil.h"
 #include "../MyDxLib.h"
-#include "../Input.h"
 #include "../Manager/SceneManager.h"
 #include "../Library/TextUtil.h"
+#include "../Library/Input.h"
 
 GameOverScene::GameOverScene()
     : BaseScene("GameOverScene") {

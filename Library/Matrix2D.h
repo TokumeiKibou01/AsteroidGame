@@ -1,6 +1,6 @@
 #pragma once
 #include <cmath>
-#include "Library/Location2D.h"
+#include "Location2D.h"
 
 struct Matrix2D {
     float m00, m01, tx;

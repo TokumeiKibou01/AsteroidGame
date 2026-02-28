@@ -1,8 +1,8 @@
 #pragma once
 #include <cmath>
-#include "Library/Location2D.h"
-#include "MyDxLib.h"
+#include "../MyDxLib.h"
 #include "Matrix2D.h"
+#include "Vector2D.h"
 
 namespace MathUtil {
 

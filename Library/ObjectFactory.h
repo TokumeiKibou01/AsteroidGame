@@ -1,11 +1,12 @@
 #pragma once
+
+#include "Location2D.h"
+#include "Vector2D.h"
+#include "MathUtil.h"
 #include "../Manager/ObjectManager.h"
-#include "../Library/Location2D.h"
-#include "../Library/Vector2D.h"
-#include "../MathUtil.h"
+#include "../Object/ExplosionEffect.h"
 #include "../Object/Bullet.h"
 #include "../Scene/BaseScene.h"
-#include "../Object/ExplosionEffect.h"
 
 namespace ObjectFactory {
 
