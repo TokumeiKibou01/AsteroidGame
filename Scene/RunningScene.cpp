@@ -7,6 +7,7 @@
 #include "../Library/ObjectFactory.h"
 #include "../Input.h"
 #include "../Library/TextUtil.h"
+#include "../Manager/SceneManager.h"
 
 RunningScene::RunningScene()
     : BaseScene("RunningScene") {
@@ -56,6 +57,12 @@ void RunningScene::Draw() {
     for (int n = 1; n < PlayerParams::MAX_HEART; n++) {
         DrawBox(leftX + (n * oneHealthWidth), leftY, leftX + (n * oneHealthWidth) + lineSize, rightY, GetColor(255, 255, 255), true);
     }
+
+    if (player->GetHeart() <= 0) {
+        SceneManager& sceneManager = SceneManager::GetInstance();
+        sceneManager.ChangeScene("GameOverScene");
+        Release();
+    }
 }
 
 void RunningScene::Init() {
@@ -70,4 +77,6 @@ void RunningScene::Init() {
 }
 
 void RunningScene::Release() {
+    ObjectManager& objManager = ObjectManager::GetInstance();
+    objManager.ClearObjects(GetName());
 }
