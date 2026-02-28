@@ -45,8 +45,9 @@ void Enemy::Update() {
 
     ObjectManager& objManager = ObjectManager::GetInstance();
     Player* player = objManager.GetDrawObject<Player>("RunningScene");
-    if (IsDistanceCollation(player)) {
+    if (IsDistanceCollation(player) && player->GetCoolTime() <= 0.0f) {
         player->SetHeart(player->GetHeart() - 1);
+        player->ResetCoolTime();
         return;
     }
 }

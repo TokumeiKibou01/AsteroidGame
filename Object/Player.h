@@ -17,6 +17,7 @@ namespace PlayerParams {
     const float MAx__SPEED = 500.0f; //速度の上限
     static int ENEMY_SCORE[3] = { 20, 50, 100 };
     static int MAX_HEART = 5;
+    static float MAX_COOLTIME = 15.0f;
 }
 
 class Player : public Base2DObject {
@@ -24,6 +25,7 @@ private:
     Location2D vertex_[3]; //3角形の頂点座標
     int score_;
     int heart_;
+    float coolTime_;
 public:
     Player(const Location2D& loc, const Vector2D& vel, const Vector2D& dir, float radius, float omega);
     ~Player();
@@ -42,4 +44,8 @@ public:
 
     void SetHeart(int heart);
     int GetHeart();
+
+    void SetCoolTime(float coolTime);
+    float GetCoolTime();
+    void ResetCoolTime();
 };

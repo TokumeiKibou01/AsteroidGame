@@ -3,12 +3,15 @@
 #include "../Library/Location2D.h"
 #include "../Library/Vector2D.h"
 #include <DxLib.h>
+#undef max //DxLibのwindows.hでマクロが使えないため
+#undef min //↑と同様
 #include <stdexcept>
 #include "Enemy.h"
 #include "../Manager/ObjectManager.h"
 #include "../DebugWindow/ImGUI/imgui.h"
 #include "../Library/MathUtil.h"
 #include "../Library/Input.h"
+#include <algorithm>
 
 Player::Player(const Location2D& loc, const Vector2D& vel, const Vector2D& dir, float radius, float omega)
     : Base2DObject("Player", loc, vel, dir, radius, omega, true) {
@@ -17,6 +20,7 @@ Player::Player(const Location2D& loc, const Vector2D& vel, const Vector2D& dir, 
     vertex_[2] = { 0, 0 };
     score_ = 0;
     heart_ = PlayerParams::MAX_HEART;
+    coolTime_ = PlayerParams::MAX_COOLTIME;
 }
 
 Player::~Player()
@@ -155,10 +159,23 @@ int Player::GetScore() {
 }
 
 void Player::SetHeart(int heart) {
-    if (heart < 0) heart = 0;
-    heart_ = heart;
+    if (heart >= 0) {
+        heart_ = heart;
+    }   
 }
 
 int Player::GetHeart() {
     return heart_;
+}
+
+void Player::SetCoolTime(float coolTime) {
+    coolTime_ = std::max(0.0f, coolTime); //例：-1を入れた場合、0.0の方が大きいため0.0が代入される
+}
+
+float Player::GetCoolTime() {
+    return coolTime_;
+}
+
+void Player::ResetCoolTime() {
+    coolTime_ = PlayerParams::MAX_COOLTIME;
 }

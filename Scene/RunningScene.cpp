@@ -28,6 +28,8 @@ void RunningScene::Update() {
     if (player && Input::IsKeyDown(KEY_INPUT_Z)) {
         ObjectFactory::spawnBullet(this, player->GetLocation(), player->GetDirection(), player->GetRadius() + 8.0f);
     }
+
+    player->SetCoolTime(player->GetCoolTime() - GetDeltaTime());
 }
 
 void RunningScene::Draw() {
@@ -35,8 +37,10 @@ void RunningScene::Draw() {
     auto player = objManager.GetDrawObject<Player>(GetName());
     objManager.DrawObject(GetName());
 
-    std::string leftText = "スコア：" + std::to_string(player->GetScore());
-    TextUtil::DrawFixText(TextDrawType::LEFT, 0, 0, 30, GetColor(255, 255, 255), leftText);
+    std::string scoreText = "スコア：" + std::to_string(player->GetScore());
+    TextUtil::DrawFixText(TextDrawType::LEFT, 0, 0, 30, GetColor(255, 255, 255), scoreText);
+    std::string coolTimeText = "クールタイム：" + std::to_string(player->GetCoolTime());
+    TextUtil::DrawFixText(TextDrawType::LEFT, 0, 30, 30, GetColor(255, 255, 255), coolTimeText);
 
     const int healthWidth = 400, healthHeight = 50;
     const int marginX = 30, marginY = 30;
