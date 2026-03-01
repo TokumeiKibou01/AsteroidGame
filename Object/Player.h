@@ -24,6 +24,7 @@ class Player : public Base2DObject {
 private:
     Location2D vertex_[3]; //3äpå`ÇÃí∏ì_ç¿ïW
     int score_;
+    int highScore_;
     int heart_;
     float coolTime_;
 public:
@@ -41,6 +42,8 @@ public:
     void SubtractScore(int score);
     void SetScore(int score);
     int GetScore();
+    void UpdateHighScore();
+    int GetHighScore();
 
     void SetHeart(int heart);
     int GetHeart();

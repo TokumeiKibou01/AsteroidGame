@@ -41,6 +41,8 @@ void RunningScene::Draw() {
     TextUtil::DrawFixText(TextDrawType::LEFT, 0, 0, 30, GetColor(255, 255, 255), scoreText);
     std::string coolTimeText = "クールタイム：" + std::to_string(player->GetCoolTime());
     TextUtil::DrawFixText(TextDrawType::LEFT, 0, 30, 30, GetColor(255, 255, 255), coolTimeText);
+    std::string highScore = "ハイスコア：" + std::to_string(player->GetHighScore());
+    TextUtil::DrawFixText(TextDrawType::LEFT, 0, 60, 30, GetColor(255, 255, 255), highScore);
 
     const int healthWidth = 400, healthHeight = 50;
     const int marginX = 30, marginY = 30;

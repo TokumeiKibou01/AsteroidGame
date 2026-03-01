@@ -19,6 +19,7 @@ Player::Player(const Location2D& loc, const Vector2D& vel, const Vector2D& dir, 
     vertex_[1] = { 0, 0 }; 
     vertex_[2] = { 0, 0 };
     score_ = 0;
+    highScore_ = 0;
     heart_ = PlayerParams::MAX_HEART;
     coolTime_ = PlayerParams::MAX_COOLTIME;
 }
@@ -136,10 +137,12 @@ void Player::Draw() {
 void Player::AddScore(Enemy* enemy) {
     EnemyType type = enemy->GetEnemyType();
     score_ = score_ + PlayerParams::ENEMY_SCORE[(int)type];
+    UpdateHighScore();
 }
 
 void Player::AddScore(int score) {
     score_ = score_ + score;
+    UpdateHighScore();
 }
 
 void Player::SubtractScore(int score) {
@@ -151,11 +154,22 @@ void Player::SubtractScore(int score) {
 void Player::SetScore(int score) {
     if (score >= 0) {
         score_ = score;
+        UpdateHighScore();
     }
 }
 
 int Player::GetScore() {
     return score_;
+}
+
+void Player::UpdateHighScore() {
+    if (score_ > highScore_) {
+        highScore_ = score_;
+    }
+}
+
+int Player::GetHighScore() {
+    return highScore_;
 }
 
 void Player::SetHeart(int heart) {
