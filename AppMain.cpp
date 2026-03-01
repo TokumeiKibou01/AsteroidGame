@@ -10,7 +10,7 @@
 #include "DebugWindow/ImGUI/imgui_impl_win32.h"
 #include "Manager/AudioManager.h"
 #include "MyDxLib.h"
-#include "Input.h"
+#include "Library/Input.h"
 
 int InitApp();
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);

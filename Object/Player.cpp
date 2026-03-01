@@ -2,17 +2,26 @@
 #include "Player.h"
 #include "../Library/Location2D.h"
 #include "../Library/Vector2D.h"
-#include "../MathUtil.h"
-#include "../Matrix2D.h"
 #include <DxLib.h>
-#include "../Input.h"
+#undef max //DxLibのwindows.hでマクロが使えないため
+#undef min //↑と同様
 #include <stdexcept>
+#include "Enemy.h"
+#include "../Manager/ObjectManager.h"
+#include "../DebugWindow/ImGUI/imgui.h"
+#include "../Library/MathUtil.h"
+#include "../Library/Input.h"
+#include <algorithm>
 
 Player::Player(const Location2D& loc, const Vector2D& vel, const Vector2D& dir, float radius, float omega)
     : Base2DObject("Player", loc, vel, dir, radius, omega, true) {
     vertex_[0] = { 0, 0 }; 
     vertex_[1] = { 0, 0 }; 
     vertex_[2] = { 0, 0 };
+    score_ = 0;
+    highScore_ = 0;
+    heart_ = PlayerParams::MAX_HEART;
+    coolTime_ = PlayerParams::MAX_COOLTIME;
 }
 
 Player::~Player()
@@ -116,4 +125,71 @@ void Player::Draw() {
 
     DrawFormatString(50, 50, GetColor(255, 255, 255), "RotAngle:%lf", angle_);
     DrawFormatString(50, 80, GetColor(255, 255, 255), "Velocity:(%lf, %lf)", vector_.x_, vector_.y_);
+
+    ObjectManager objManager = ObjectManager::GetInstance();
+    int playerHeart = GetHeart();
+    ImGui::Begin("Debug");
+    ImGui::SliderInt("プレイヤー", &playerHeart, 1, PlayerParams::MAX_HEART);
+    ImGui::End();
+    SetHeart(playerHeart);
+}
+
+void Player::AddScore(Enemy* enemy) {
+    EnemyType type = enemy->GetEnemyType();
+    score_ = score_ + PlayerParams::ENEMY_SCORE[(int)type];
+    UpdateHighScore();
+}
+
+void Player::AddScore(int score) {
+    score_ = score_ + score;
+    UpdateHighScore();
+}
+
+void Player::SubtractScore(int score) {
+    if (score_ - score >= 0) {
+        score_ = score_ - score;
+    }
+}
+
+void Player::SetScore(int score) {
+    if (score >= 0) {
+        score_ = score;
+        UpdateHighScore();
+    }
+}
+
+int Player::GetScore() {
+    return score_;
+}
+
+void Player::UpdateHighScore() {
+    if (score_ > highScore_) {
+        highScore_ = score_;
+    }
+}
+
+int Player::GetHighScore() {
+    return highScore_;
+}
+
+void Player::SetHeart(int heart) {
+    if (heart >= 0) {
+        heart_ = heart;
+    }   
+}
+
+int Player::GetHeart() {
+    return heart_;
+}
+
+void Player::SetCoolTime(float coolTime) {
+    coolTime_ = std::max(0.0f, coolTime); //例：-1を入れた場合、0.0の方が大きいため0.0が代入される
+}
+
+float Player::GetCoolTime() {
+    return coolTime_;
+}
+
+void Player::ResetCoolTime() {
+    coolTime_ = PlayerParams::MAX_COOLTIME;
 }

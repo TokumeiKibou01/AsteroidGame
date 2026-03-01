@@ -42,6 +42,7 @@ namespace EnemyParams {
 class Enemy : public Base2DObject {
 private:
     int segment_;
+    EnemyType enemyType_;
     float life_;
     std::vector<Location2D> vertex_;
 
@@ -51,4 +52,6 @@ public:
     ~Enemy();
     void Update() override;
     void Draw() override;
+
+    EnemyType GetEnemyType() { return enemyType_; };
 };

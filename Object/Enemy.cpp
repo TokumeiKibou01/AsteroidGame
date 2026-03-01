@@ -1,10 +1,12 @@
 #include "Enemy.h"
 #include <DxLib.h>
 #include "../MyDxLib.h"
-#include "../Matrix2D.h"
 #include "../Library/Location2D.h"
 #include "../Library/Vector2D.h"
-#include "../MathUtil.h"
+#include "../Manager/ObjectManager.h"
+#include "../Object/Player.h"
+#include "../Library/Matrix2D.h"
+#include "../Library/MathUtil.h"
 
 using namespace EnemyParams;
 
@@ -13,6 +15,7 @@ Enemy::Enemy(EnemyType type, int segment)
     location_ = { (float)GetRand(Screen::WIDTH), (float)GetRand(Screen::HEIGHT) };
     vector_ = { (float)(GetRand(200) - 100), (float)(GetRand(200) - 100) };
     segment_ = segment < EnemyParams::SEGMENT_MIN ? EnemyParams::SEGMENT_MIN : segment;   
+    enemyType_ = type;
     RandomRadius(type);
     vertex_.resize(segment_);
     angle_ = 0.0f;
@@ -39,6 +42,14 @@ void Enemy::Update() {
     if (location_.y_ > Screen::HEIGHT) location_.y_ = 0;
 
     angle_ = angle_ + omega_ * dt;
+
+    ObjectManager& objManager = ObjectManager::GetInstance();
+    Player* player = objManager.GetDrawObject<Player>("RunningScene");
+    if (IsDistanceCollation(player) && player->GetCoolTime() <= 0.0f) {
+        player->SetHeart(player->GetHeart() - 1);
+        player->ResetCoolTime();
+        return;
+    }
 }
 
 void Enemy::Draw() {

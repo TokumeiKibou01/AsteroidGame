@@ -42,5 +42,8 @@ public:
 
     void UpdateObject(std::string sceneName);
     void DrawObject(std::string sceneName);
+
+    void ClearObjects(std::string sceneName);
+    void ClearAllObjects();
 };
 

@@ -94,9 +94,6 @@
     <ClInclude Include="Object\BaseObject.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="MathUtil.h">
-      <Filter>Library</Filter>
-    </ClInclude>
     <ClInclude Include="Manager\AudioManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
@@ -109,12 +106,6 @@
     <ClInclude Include="MyDxLib.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="Matrix2D.h">
-      <Filter>Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Library</Filter>
-    </ClInclude>
     <ClInclude Include="Library\ObjectFactory.h">
       <Filter>Library</Filter>
     </ClInclude>
@@ -126,6 +117,24 @@
     </ClInclude>
     <ClInclude Include="Object\Enemy.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\TitleScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\GameOverScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TextUtil.h">
+      <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Input.h">
+      <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\MathUtil.h">
+      <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Matrix2D.h">
+      <Filter>Library</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -201,9 +210,6 @@
     <ClCompile Include="Object\Player.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Library</Filter>
-    </ClCompile>
     <ClCompile Include="Object\ExplosionEffect.cpp">
       <Filter>Object</Filter>
     </ClCompile>
@@ -212,6 +218,15 @@
     </ClCompile>
     <ClCompile Include="Object\Enemy.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\TitleScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\GameOverScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Input.cpp">
+      <Filter>Library</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #include "ExplosionEffect.h"
 #include <DxLib.h>
-#include "../MathUtil.h"
+#include "../Library/MathUtil.h"
 
 ExplosionEffect::ExplosionEffect(const Location2D& loc)
     : Base2DObject("ExplosionEffect", loc, Vector2D(), Vector2D(), -1, -1, true) {
