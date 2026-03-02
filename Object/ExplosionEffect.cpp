@@ -59,17 +59,19 @@ void ExplosionEffect::Draw() {
 
     for (auto& particle : particles_) {
         if (particle.life > 0.0f) {
+            SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255 * particle.alpha);
             Location2D drawPos = GetLocation() + particle.offset_;
             Location2D screenPos = MathUtil::WorldToScreen(drawPos);
             DrawCircle((int) screenPos.x_, (int) screenPos.y_, particle.radius, GetColor(255, 0, 0));
-            unsigned int particleColor = GetColor(
-            	(int)(255 * particle.alpha),
-            	(int)(255 * particle.alpha),
-            	(int)(255 * particle.alpha)
-            );
+            //unsigned int particleColor = GetColor(
+            //	(int)(255 * particle.alpha),
+            //	(int)(255 * particle.alpha),
+            //	(int)(255 * particle.alpha)
+            //);
 
             DrawCircleAA((int)screenPos.x_, (int)screenPos.y_, particle.radius, 60,
-                particleColor);
+                GetColor(255,255,255));
+            SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
         }
     }
 }
