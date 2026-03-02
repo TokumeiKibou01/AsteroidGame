@@ -3,6 +3,7 @@
 #include "../Scene/TitleScene.h"
 #include "../Scene/RunningScene.h"
 #include "../Scene/GameOverScene.h"
+#include "../Scene/GameClearScene.h"
 
 SceneManager::SceneManager() {
     currentScene_ = nullptr;
@@ -11,6 +12,7 @@ SceneManager::SceneManager() {
     sceneVector_.push_back(new TitleScene());
     sceneVector_.push_back(new RunningScene());
     sceneVector_.push_back(new GameOverScene());
+    sceneVector_.push_back(new GameClearScene());
     
     ChangeScene("BootScene");
     ChangeScene("TitleScene");

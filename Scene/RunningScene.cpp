@@ -36,6 +36,7 @@ void RunningScene::Update() {
 void RunningScene::Draw() {
     ObjectManager& objManager = ObjectManager::GetInstance();
     auto player = objManager.GetDrawObject<Player>(GetName());
+    auto enemies = objManager.GetDrawObjects<Enemy>(GetName());
     objManager.DrawObject(GetName());
 
     std::string scoreText = "スコア：" + std::to_string(player->GetScore());
@@ -44,10 +45,13 @@ void RunningScene::Draw() {
     TextUtil::DrawFixText(TextDrawType::LEFT, 0, 30, 30, GetColor(255, 255, 255), coolTimeText);
     std::string highScore = "ハイスコア：" + std::to_string(player->GetHighScore());
     TextUtil::DrawFixText(TextDrawType::LEFT, 0, 60, 30, GetColor(255, 255, 255), highScore);
-
+    SceneManager& sceneManager = SceneManager::GetInstance();
     if (player->GetHeart() <= 0) {
-        SceneManager& sceneManager = SceneManager::GetInstance();
         sceneManager.ChangeScene("GameOverScene");
+        Release();
+    }
+    if (enemies.size() <= 0) {
+        sceneManager.ChangeScene("GameClearScene");
         Release();
     }
 }

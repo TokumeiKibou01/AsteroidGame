@@ -168,6 +168,7 @@
     <ClInclude Include="Object\Player.h" />
     <ClInclude Include="Scene\BaseScene.h" />
     <ClInclude Include="Scene\BootScene.h" />
+    <ClInclude Include="Scene\GameClearScene.h" />
     <ClInclude Include="Scene\GameOverScene.h" />
     <ClInclude Include="Scene\RunningScene.h" />
     <ClInclude Include="Scene\TitleScene.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="Object\Player.cpp" />
     <ClCompile Include="Scene\BaseScene.cpp" />
     <ClCompile Include="Scene\BootScene.cpp" />
+    <ClCompile Include="Scene\GameClearScene.cpp" />
     <ClCompile Include="Scene\GameOverScene.cpp" />
     <ClCompile Include="Scene\RunningScene.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
