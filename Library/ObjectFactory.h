@@ -17,7 +17,7 @@ namespace ObjectFactory {
     inline void spawnEffect(const Location2D& loc) {
         ExplosionEffect* effect = new ExplosionEffect(loc);
         ObjectManager& objManager = ObjectManager::GetInstance();
-        objManager.AddObject("RunningScene", effect);
+        objManager.AddObjectBegin("RunningScene", effect);
     }
 
     inline void spawnEnemy() {
@@ -38,7 +38,7 @@ namespace ObjectFactory {
 
         ObjectManager& objManager = ObjectManager::GetInstance();
         Enemy* enemy = new Enemy(EnemyType::LARGE, segment);
-        objManager.AddObject("RunningScene", enemy);
+        objManager.AddObjectBegin("RunningScene", enemy);
     }
 
     inline void spawnDivideEnemy(Enemy* enemy, int count) {
@@ -52,7 +52,7 @@ namespace ObjectFactory {
                 Vector2D randomVel = { (float)(GetRand(200) - 100), (float)(GetRand(200) - 100) };
                 newEnemy->SetLocation(enemy->GetLocation());
                 newEnemy->SetVector(randomVel);
-                objManager.AddObject("RunningScene", newEnemy);
+                objManager.AddObjectBegin("RunningScene", newEnemy);
             }
         }
 
@@ -71,7 +71,7 @@ namespace ObjectFactory {
         resultVec.y_ = dir.y_ * BulletParams::SPEED;
 
         Bullet* bullet = new Bullet(resultLoc, resultVec, BulletParams::RADIUS, BulletParams::COLOR, BulletParams::LIFE);
-        objManager.AddObject(scene->GetName(), bullet);
+        objManager.AddObjectBegin(scene->GetName(), bullet);
     }
 
 }
