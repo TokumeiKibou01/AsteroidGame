@@ -11,6 +11,7 @@ enum TextDrawType {
 namespace TextUtil {
 
     static void DrawFixText(TextDrawType type, int x, int y, int size, int text_color, int edge_color, std::string text) {
+        ChangeFontType(DX_FONTTYPE_ANTIALIASING_EDGE_8X8);
         int fontSize = GetFontSize();
         SetFontSize(size);
         int strWidth = GetDrawStringWidth(text.c_str(), strlen(text.c_str()));
@@ -33,6 +34,7 @@ namespace TextUtil {
         }
         
         SetFontSize(fontSize);
+        ChangeFontType(DX_FONTTYPE_ANTIALIASING_8X8);
     }
 
     static void DrawFixText(TextDrawType type, int x, int y, int size, int text_color, std::string text) {
