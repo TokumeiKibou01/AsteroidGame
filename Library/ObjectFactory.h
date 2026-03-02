@@ -43,8 +43,9 @@ namespace ObjectFactory {
 
     inline void spawnDivideEnemy(Enemy* enemy, int count) {
         ObjectManager& objManager = ObjectManager::GetInstance();
-
-        if (enemy->GetEnemyType() != EnemyType::SMALL) {
+        std::vector<Enemy*> enemyList = objManager.GetDrawObjects<Enemy>("RunningScene");
+        
+        if (enemy->GetEnemyType() != EnemyType::SMALL && EnemyParams::ENEMY_MAX >= enemyList.size()) {
             EnemyType type = enemy->GetEnemyType() == EnemyType::LARGE ? EnemyType::MEDIUM : EnemyType::SMALL;
             for (int n = 0; n < count; n++) { // 大サイズの場合、中サイズ2体を出す
                 Enemy* newEnemy = new Enemy(type, 8);
