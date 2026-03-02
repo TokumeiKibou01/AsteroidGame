@@ -123,13 +123,16 @@ void Player::Draw() {
         GetColor(255, 0, 0), FALSE, 2.0
     );
 
-    DrawFormatString(50, 50, GetColor(255, 255, 255), "RotAngle:%lf", angle_);
-    DrawFormatString(50, 80, GetColor(255, 255, 255), "Velocity:(%lf, %lf)", vector_.x_, vector_.y_);
+    // DrawFormatString(50, 50, GetColor(255, 255, 255), "RotAngle:%lf", angle_);
+    // DrawFormatString(50, 80, GetColor(255, 255, 255), "Velocity:(%lf, %lf)", vector_.x_, vector_.y_);
 
     ObjectManager objManager = ObjectManager::GetInstance();
     int playerHeart = GetHeart();
     ImGui::Begin("Debug");
-    ImGui::SliderInt("ÉvÉåÉCÉÑÅ[", &playerHeart, 1, PlayerParams::MAX_HEART);
+    ImGui::Text(u8"Player");
+    ImGui::Text(u8"location: (%3.0f, %3.0f)", location_.x_, location_.y_);
+    ImGui::SliderInt(u8"heart: ", &playerHeart, 1, PlayerParams::MAX_HEART);
+    ImGui::SliderFloat(u8"angle: ", &angle_, 0.0f, 360.0f);
     ImGui::End();
     SetHeart(playerHeart);
 }
