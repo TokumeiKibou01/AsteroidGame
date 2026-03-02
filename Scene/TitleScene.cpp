@@ -29,6 +29,8 @@ void TitleScene::Update() {
 void TitleScene::Draw() {
     if (count % 100 < 50) {
         int fontSize = GetFontSize();
+        SetFontThickness(10);
+        TextUtil::DrawFixText(TextDrawType::CENTER, Screen::WIDTH / 2, Screen::HEIGHT / 2 - 30, 30, GetColor(255, 255, 255), "Asteroids");
         TextUtil::DrawFixText(TextDrawType::CENTER, Screen::WIDTH / 2, Screen::HEIGHT / 2, 30, GetColor(255, 255, 255), "ゲームを開始するにはスペースキーを押してください");
         
     }
