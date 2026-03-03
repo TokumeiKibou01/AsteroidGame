@@ -2,6 +2,7 @@
 
 BaseScene::BaseScene(std::string name) {
     name_ = name;
+    sceneCounter_ = 0;
 }
 
 std::string BaseScene::GetName() {

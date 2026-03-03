@@ -4,6 +4,8 @@
 class BaseScene {
 private:
     std::string name_;
+protected:
+    int sceneCounter_;
 public:
     BaseScene(std::string name);
     virtual void Update() = 0;

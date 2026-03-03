@@ -3,7 +3,6 @@
 
 class GameClearScene : public BaseScene {
 private:
-    int count;
 public:
     GameClearScene();
     ~GameClearScene();

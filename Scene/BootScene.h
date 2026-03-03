@@ -3,7 +3,6 @@
 
 class BootScene : public BaseScene {
 private:
-    int counter_;
 public:
     BootScene();
     ~BootScene();

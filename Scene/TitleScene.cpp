@@ -12,13 +12,12 @@ namespace {
 
 TitleScene::TitleScene()
     : BaseScene("TitleScene") {
-    count = 0;
 }
 
 TitleScene::~TitleScene() {}
 
 void TitleScene::Update() {
-    count++;
+    sceneCounter_++;
 
     if (Input::IsKeepKeyDown(KEY_INPUT_SPACE)) {
         sceneManager.ChangeScene("RunningScene");
@@ -26,7 +25,7 @@ void TitleScene::Update() {
 }
 
 void TitleScene::Draw() {
-    if (count % 100 < 50) {
+    if (sceneCounter_ % 100 < 50) {
         int fontSize = GetFontSize();
         SetFontThickness(10);
         TextUtil::DrawFixText(TextDrawType::CENTER, Screen::WIDTH / 2, Screen::HEIGHT / 2 - 80, 80, GetColor(255, 255, 255), "Asteroids");
@@ -36,7 +35,6 @@ void TitleScene::Draw() {
 }
 
 void TitleScene::Init() {
-    count = 0;
 }
 
 void TitleScene::Release()

@@ -7,36 +7,29 @@
 #include "../Manager/AudioManager.h"
 #include "../Manager/SceneManager.h"
 
+namespace {
+    ObjectManager& objManager = ObjectManager::GetInstance();
+}
+
 BootScene::BootScene()
     : BaseScene("BootScene") {
-    Init();
 }
 
 BootScene::~BootScene() {
 }
 
 void BootScene::Update() {
-    ObjectManager::GetInstance().UpdateObject(GetName());
-    auto obj = ObjectManager::GetInstance().GetDrawObject<BoxObject>(GetName());
-
-    Location2D loc = obj->GetLocation();
-    loc.x_ += 5;
-    obj->SetLocation(loc);
-
-    counter_++;
+    sceneCounter_++;
+    objManager.UpdateObject(GetName());
 }
 
 void BootScene::Draw() {
-    ObjectManager::GetInstance().DrawObject(GetName());
+    objManager.DrawObject(GetName());
 
-    DrawFormatString(0, 0, GetColor(255, 255, 255), "BootScene: %d", counter_);
+    DrawFormatString(0, 0, GetColor(255, 255, 255), "BootScene: %d", sceneCounter_);
 }
 
 void BootScene::Init() {
-    counter_ = 0;
-
-    ObjectManager& objManager = ObjectManager::GetInstance();
-    objManager.AddObject(GetName(), new BoxObject(Location2D(100.0f, 100.0f), Vector2D(0.0f, 0.0f)));
 }
 
 void BootScene::Release() {

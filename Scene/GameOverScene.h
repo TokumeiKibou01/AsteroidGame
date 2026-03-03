@@ -2,7 +2,6 @@
 #include "BaseScene.h"
 class GameOverScene : public BaseScene {
 private:
-    int count;
 public:
     GameOverScene();
     ~GameOverScene();

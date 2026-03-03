@@ -13,6 +13,10 @@
 #include "Library/Input.h"
 
 int InitApp();
+int InitDxLib();
+int InitImGui();
+void ExitApp();
+
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 namespace {
@@ -69,42 +73,46 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			break;
 		}
 	}
-    ImGui_ImplDX11_Shutdown();
-    ImGui_ImplWin32_Shutdown();
-    ImGui::DestroyContext();
-	DxLib_End();
+    ExitApp();
 	return 0;
 }
 
 int InitApp() {
-
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»ˆ—
-	ChangeWindowMode(true);
-	SetWindowSizeChangeEnableFlag(false, false);
-	SetMainWindowText("TITLE");
-	SetGraphMode(Screen::WIDTH, Screen::HEIGHT, 32);
-	SetWindowSizeExtendRate(1.0);
-	SetBackgroundColor(117, 120, 125);
-    ChangeFont("Meiryo UI");
-    ChangeFontType(DX_FONTTYPE_ANTIALIASING_EDGE_8X8);
-
-	if (DxLib_Init() == -1) {
-		DxLib_End();
-		return -1;
-	}
-	SetDrawScreen(DX_SCREEN_BACK);
-    SetAlwaysRunFlag(TRUE);
-    SetUseZBuffer3D(TRUE);
-    SetWriteZBuffer3D(TRUE); 
-    SetUseHookWinProcReturnValue(FALSE);
-
-    SetHookWinProc([](HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) -> LRESULT {       
-        return ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam);
-    });
+    InitDxLib();
+    InitImGui();
 
     audioManager.Init();
     sceneManager.InitManager();
 
+	return 0;
+}
+
+int InitDxLib() {
+    ChangeWindowMode(true);
+    SetWindowSizeChangeEnableFlag(false, false);
+    SetMainWindowText(DxLibParam::WINDOW_TITLE);
+    SetGraphMode(Screen::WIDTH, Screen::HEIGHT, 32);
+    SetWindowSizeExtendRate(1.0);
+    SetBackgroundColor(DxLibParam::BACKGROUND_COLOR[0], DxLibParam::BACKGROUND_COLOR[1], DxLibParam::BACKGROUND_COLOR[2]);
+    ChangeFont(DxLibParam::FONT_NAME);
+    ChangeFontType(DxLibParam::FONT_TYPE);
+
+    if (DxLib_Init() == -1) {
+        DxLib_End();
+        return -1;
+    }
+    SetDrawScreen(DX_SCREEN_BACK);
+    SetAlwaysRunFlag(TRUE);
+    SetUseZBuffer3D(TRUE);
+    SetWriteZBuffer3D(TRUE);
+    SetUseHookWinProcReturnValue(FALSE);
+
+    SetHookWinProc([](HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) -> LRESULT {
+        return ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam);
+        });
+}
+
+int InitImGui() {
     ImGui::CreateContext();
     auto& io = ImGui::GetIO();
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
@@ -112,9 +120,16 @@ int InitApp() {
 
     ImGui::StyleColorsDark();
     ImGui_ImplWin32_Init(GetMainWindowHandle());
-    ID3D11Device* device = (ID3D11Device*) GetUseDirect3D11Device();
-    ID3D11DeviceContext* deviceContext = (ID3D11DeviceContext*) GetUseDirect3D11DeviceContext();
+    ID3D11Device* device = (ID3D11Device*)GetUseDirect3D11Device();
+    ID3D11DeviceContext* deviceContext = (ID3D11DeviceContext*)GetUseDirect3D11DeviceContext();
     ImGui_ImplDX11_Init(device, deviceContext);
-    
-	return 0;
+
+    return 0;
+}
+
+void ExitApp() {
+    ImGui_ImplDX11_Shutdown();
+    ImGui_ImplWin32_Shutdown();
+    ImGui::DestroyContext();
+    DxLib_End();
 }
