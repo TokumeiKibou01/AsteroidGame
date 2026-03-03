@@ -20,13 +20,6 @@ public:
     /// <param name="obj"></param>
     void AddObjectBegin(std::string sceneName, BaseObject* obj);
 
-    /// <summary>
-    /// Žè‘O‚É•`‰æ‚·‚é‚Æ‚«‚ÉŽg‚¤
-    /// </summary>
-    /// <param name="sceneName"></param>
-    /// <param name="obj"></param>
-    void AddObjectEnd(std::string sceneName, BaseObject* obj);
-
     void RemoveObject(std::string sceneName, BaseObject* obj);
 
     template<class C> C* GetDrawObject(std::string sceneName) {
