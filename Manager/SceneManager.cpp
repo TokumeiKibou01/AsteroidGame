@@ -7,15 +7,6 @@
 
 SceneManager::SceneManager() {
     currentScene_ = nullptr;
-
-    sceneVector_.push_back(new BootScene());
-    sceneVector_.push_back(new TitleScene());
-    sceneVector_.push_back(new RunningScene());
-    sceneVector_.push_back(new GameOverScene());
-    sceneVector_.push_back(new GameClearScene());
-    
-    ChangeScene("BootScene");
-    ChangeScene("TitleScene");
 }
 
 SceneManager::~SceneManager() {}
@@ -53,4 +44,16 @@ void SceneManager::InitScene() {
 void SceneManager::ReleaseScene() {
     if (currentScene_ == nullptr) return;
     currentScene_->Release();
+}
+
+void SceneManager::InitManager() {
+    sceneVector_.clear();
+    sceneVector_.push_back(new BootScene());
+    sceneVector_.push_back(new TitleScene());
+    sceneVector_.push_back(new RunningScene());
+    sceneVector_.push_back(new GameOverScene());
+    sceneVector_.push_back(new GameClearScene());
+
+    ChangeScene("BootScene");
+    ChangeScene("TitleScene");
 }

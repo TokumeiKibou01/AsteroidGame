@@ -16,4 +16,5 @@ public:
     void DrawScene();
     void InitScene();
     void ReleaseScene();
+    void InitManager();
 };

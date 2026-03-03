@@ -4,6 +4,10 @@
 #include "../MyDxLib.h"
 #include "../Manager/SceneManager.h"
 
+namespace {
+    SceneManager& sceneManager = SceneManager::GetInstance();
+}
+
 GameClearScene::GameClearScene()
     : BaseScene("GameClearScene") {
     count = 0;
@@ -14,8 +18,7 @@ GameClearScene::~GameClearScene() {
 
 void GameClearScene::Update() {
     count++;
-    if (Input::IsKeyDown(KEY_INPUT_SPACE)) {
-        SceneManager& sceneManager = SceneManager::GetInstance();
+    if (Input::IsKeyDown(KEY_INPUT_SPACE)) {     
         sceneManager.ChangeScene("TitleScene");
     }
 }

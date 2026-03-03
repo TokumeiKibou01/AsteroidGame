@@ -7,7 +7,7 @@
 #include "../Library/Input.h"
 
 namespace {
-    
+    SceneManager& sceneManager = SceneManager::GetInstance();
 }
 
 TitleScene::TitleScene()
@@ -18,7 +18,6 @@ TitleScene::TitleScene()
 TitleScene::~TitleScene() {}
 
 void TitleScene::Update() {
-    SceneManager& sceneManager = SceneManager::GetInstance();
     count++;
 
     if (Input::IsKeepKeyDown(KEY_INPUT_SPACE)) {

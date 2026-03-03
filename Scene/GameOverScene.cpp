@@ -7,6 +7,10 @@
 #include "../Library/TextUtil.h"
 #include "../Library/Input.h"
 
+namespace {
+    SceneManager& sceneManager = SceneManager::GetInstance();
+}
+
 GameOverScene::GameOverScene()
     : BaseScene("GameOverScene") {
     count = 0;
@@ -18,7 +22,6 @@ GameOverScene::~GameOverScene() {
 void GameOverScene::Update() {
     count++;
     if (Input::IsKeyDown(KEY_INPUT_SPACE)) {
-        SceneManager& sceneManager = SceneManager::GetInstance();
         sceneManager.ChangeScene("TitleScene");
     }
 }

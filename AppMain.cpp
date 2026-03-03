@@ -18,6 +18,7 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg
 namespace {
     SceneManager& sceneManager = SceneManager::GetInstance();
     ObjectManager objManager = ObjectManager::GetInstance();
+    AudioManager& audioManager = AudioManager::GetInstance();
     int crrTime; //¡‚ÌŠÔ
     int prevTime; //‘O‚ÌŠÔ
     
@@ -101,7 +102,8 @@ int InitApp() {
         return ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam);
     });
 
-    AudioManager::GetInstance().Init();
+    audioManager.Init();
+    sceneManager.InitManager();
 
     ImGui::CreateContext();
     auto& io = ImGui::GetIO();
