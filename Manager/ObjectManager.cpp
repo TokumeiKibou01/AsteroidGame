@@ -23,14 +23,6 @@ void ObjectManager::AddObjectBegin(std::string sceneName, BaseObject* obj) {
     sceneObjVector.insert(sceneObjVector.begin(), obj);
 }
 
-void ObjectManager::AddObjectEnd(std::string sceneName, BaseObject* obj) {
-    if (objEachSceneMap.find(sceneName) == objEachSceneMap.end()) {
-        objEachSceneMap[sceneName] = std::vector<BaseObject*>();
-    }
-    std::vector<BaseObject*>& sceneObjVector = objEachSceneMap.at(sceneName);
-    sceneObjVector.insert(sceneObjVector.begin() + sceneObjVector.size() - 1, obj);
-}
-
 void ObjectManager::RemoveObject(std::string sceneName, BaseObject* obj) {
     std::vector<BaseObject*>& sceneObjVector = objEachSceneMap.at(sceneName);
     for (auto it = sceneObjVector.begin(); it != sceneObjVector.end(); ) {
