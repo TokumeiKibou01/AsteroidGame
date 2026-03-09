@@ -1,6 +1,5 @@
 #include "BootScene.h"
 #include "BaseScene.h"
-#include "../Object/BoxObject.h"
 #include "../Manager/ObjectManager.h"
 #include <DxLib.h>
 #include "../Library/Location2D.h"
