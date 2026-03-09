@@ -24,7 +24,8 @@ public:
 
     template<class C> C* GetDrawObject(std::string sceneName) {
         std::vector<BaseObject*>& sceneObjVector = objEachSceneMap.at(sceneName);
-        for (BaseObject* obj : sceneObjVector) {
+        for (int i = 0; i < sceneObjVector.size(); i++) {
+            auto& obj = sceneObjVector[i];
             if (obj == nullptr) continue;
             C* instance = dynamic_cast<C*>(obj);
             if (instance != nullptr) {
@@ -37,7 +38,8 @@ public:
     template<class C> std::vector<C*> GetDrawObjects(std::string sceneName) {
         std::vector<C*> base;
         std::vector<BaseObject*>& sceneObjVector = objEachSceneMap.at(sceneName);
-        for (BaseObject* obj : sceneObjVector) {
+        for (int i = 0; i < sceneObjVector.size(); i++) {
+            auto& obj = sceneObjVector[i];
             if (obj == nullptr) continue;
             C* instance = dynamic_cast<C*>(obj);
 
