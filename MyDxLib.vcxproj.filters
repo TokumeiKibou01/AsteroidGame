@@ -46,9 +46,6 @@
     <ClInclude Include="Object\Base2DObject.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="Object\BoxObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="Manager\SceneManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
@@ -157,9 +154,6 @@
       <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="Object\Base2DObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Object\BoxObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="AppMain.cpp">

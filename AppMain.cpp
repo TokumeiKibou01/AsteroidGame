@@ -1,7 +1,6 @@
 #include <DxLib.h>
 #include <vector>
 #include "Manager/ObjectManager.h"
-#include "Object/BoxObject.h"
 #include "Manager/SceneManager.h"
 #include "DebugWindow/Win32/DebugWin32Window.h"
 #include <thread>
