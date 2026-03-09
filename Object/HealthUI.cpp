@@ -1,18 +1,11 @@
 #include "HealthUI.h"
 #include <DxLib.h>
+#include "BaseObject.h"
 #include "Base2DObject.h"
 #include "../MyDxLib.h"
 #include "Player.h"
 #include "../Manager/ObjectManager.h"
 #include "../Library/TextUtil.h"
-
-namespace {
-    const int healthWidth = 400, healthHeight = 50;
-    const int marginX = 30, marginY = 30;
-    const int leftX = Screen::WIDTH - marginX - healthWidth, leftY = 0 + marginY;
-    const int rightX = Screen::WIDTH - marginX, rightY = marginY + healthHeight;
-    const int lineSize = 5;
-}
 
 HealthUI::HealthUI()
     : BaseObject("ExplosionEffect", true) {
