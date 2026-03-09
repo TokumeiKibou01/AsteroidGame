@@ -18,6 +18,8 @@ namespace PlayerParams {
     static int ENEMY_SCORE[3] = { 20, 50, 100 };
     static int MAX_HEART = 5;
     static float MAX_COOLTIME = 15.0f;
+    static int MAX_WEAPON = 10;
+    static float RELOAD_TIME = 10.0f;
 }
 
 class Player : public Base2DObject {
@@ -27,6 +29,9 @@ private:
     int highScore_;
     int heart_;
     float coolTime_;
+    int weaponRemaining_;
+    bool isReloading_;
+    float reloadTime_;
 public:
     Player(const Location2D& loc, const Vector2D& vel, const Vector2D& dir, float radius, float omega);
     ~Player();
@@ -51,4 +56,12 @@ public:
     void SetCoolTime(float coolTime);
     float GetCoolTime();
     void ResetCoolTime();
+
+    int GetWeaponRemaing();
+    void SetWeaponRemaing(int weapon);
+
+    bool IsReloading() { return isReloading_; }
+    void SetIsReloading(bool isReloading) { isReloading_ = isReloading; }
+    float GetReloadTime() { return reloadTime_; }
+    void SetReloadTime(float reloadTime) { reloadTime_ = reloadTime; }
 };

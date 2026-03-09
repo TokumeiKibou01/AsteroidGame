@@ -22,6 +22,9 @@ Player::Player(const Location2D& loc, const Vector2D& vel, const Vector2D& dir, 
     highScore_ = 0;
     heart_ = PlayerParams::MAX_HEART;
     coolTime_ = PlayerParams::MAX_COOLTIME;
+    weaponRemaining_ = PlayerParams::MAX_WEAPON;
+    isReloading_ = false;
+    reloadTime_ = PlayerParams::RELOAD_TIME;
 }
 
 Player::~Player()
@@ -195,4 +198,12 @@ float Player::GetCoolTime() {
 
 void Player::ResetCoolTime() {
     coolTime_ = PlayerParams::MAX_COOLTIME;
+}
+
+int Player::GetWeaponRemaing() {
+    return weaponRemaining_;
+}
+
+void Player::SetWeaponRemaing(int weapon) {
+    this->weaponRemaining_ = std::max(0, weapon);
 }
