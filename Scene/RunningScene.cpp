@@ -41,7 +41,7 @@ void RunningScene::Update() {
             else {
                 viewTime -= GetDeltaTime();
                 std::string noBullet = "Rキーでリロードしてください";
-                TextUtil::DrawFixText(TextDrawType::CENTER, Screen::WIDTH / 2, Screen::HEIGHT / 2 + 30, 30, GetColor(255, 255, 255), noBullet);
+                TextUtil::DrawFixText(TextDrawType::CENTER, Screen::WIDTH / 2, Screen::HEIGHT / 2 + 30, 30, GetColor(255, 255, 255), -1, noBullet);
             }
 
         }
@@ -56,7 +56,7 @@ void RunningScene::Update() {
 
     if (player->IsReloading()) {
         std::string reloadText = "リロード中... " + std::to_string(player->GetReloadTime());
-        TextUtil::DrawFixText(TextDrawType::CENTER, Screen::WIDTH / 2, Screen::HEIGHT / 2, 30, GetColor(255, 255, 255), reloadText);
+        TextUtil::DrawFixText(TextDrawType::CENTER, Screen::WIDTH / 2, Screen::HEIGHT / 2, 30, GetColor(255, 255, 255), -1, reloadText);
 
         if (player->GetReloadTime() <= 0) {
             player->SetWeaponRemaing(PlayerParams::MAX_WEAPON);
@@ -77,13 +77,15 @@ void RunningScene::Draw() {
     objManager.DrawObject(GetName());
 
     std::string scoreText = "スコア：" + std::to_string(player->GetScore());
-    TextUtil::DrawFixText(TextDrawType::LEFT, 0, 0, 30, GetColor(255, 255, 255), scoreText);
-    std::string coolTimeText = "クールタイム：" + std::to_string(player->GetCoolTime());
-    TextUtil::DrawFixText(TextDrawType::LEFT, 0, 30, 30, GetColor(255, 255, 255), coolTimeText);
+    TextUtil::DrawFixText(TextDrawType::LEFT, 0, 0, 30, GetColor(240, 183, 26), GetColor(0, 0, 0), scoreText, true);
     std::string highScore = "ハイスコア：" + std::to_string(player->GetHighScore());
-    TextUtil::DrawFixText(TextDrawType::LEFT, 0, 60, 30, GetColor(255, 255, 255), highScore);
+    TextUtil::DrawFixText(TextDrawType::LEFT, 0, 30, 30, GetColor(240, 183, 26), GetColor(0, 0, 0), highScore, true);
+
+    std::string coolTimeText = "無敵クールタイム：" + std::to_string(player->GetCoolTime());
+    TextUtil::DrawFixText(TextDrawType::LEFT, 0, Screen::HEIGHT - 30*2, 30, GetColor(0, 0, 0), GetColor(255, 255, 255), coolTimeText, true);
     std::string bulletRemaing = "残りの弾数：" + std::to_string(player->GetWeaponRemaing());
-    TextUtil::DrawFixText(TextDrawType::LEFT, 0, Screen::HEIGHT - 60, 30, GetColor(255, 255, 255), bulletRemaing);
+    TextUtil::DrawFixText(TextDrawType::LEFT, 0, Screen::HEIGHT - 30, 30, GetColor(0, 0, 0), GetColor(255, 255, 255), bulletRemaing, true);
+
     if (player->GetHeart() <= 0) {
         sceneManager.ChangeScene("GameOverScene");
         Release();

@@ -36,5 +36,5 @@ void HealthUI::Draw() {
         DrawBox(leftX + (n * oneHealthWidth), leftY, leftX + (n * oneHealthWidth) + lineSize, rightY, GetColor(255, 255, 255), true);
     }
 
-    TextUtil::DrawFixText(TextDrawType::LEFT, leftX, leftY - marginY, 30, GetColor(255, 255, 255), "‘Ì—Í");
+    TextUtil::DrawFixText(TextDrawType::LEFT, leftX, leftY - marginY, 30, GetColor(255, 255, 255), GetColor(255, 255, 255), "‘Ì—Í");
 }

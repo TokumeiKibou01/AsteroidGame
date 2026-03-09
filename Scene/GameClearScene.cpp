@@ -24,8 +24,8 @@ void GameClearScene::Update() {
 
 void GameClearScene::Draw() {
     if (sceneCounter_ % 100 < 50) {
-        TextUtil::DrawFixText(TextDrawType::CENTER, Screen::WIDTH / 2, Screen::HEIGHT / 2, 30, GetColor(255, 255, 255), "ゲームクリア!");
-        TextUtil::DrawFixText(TextDrawType::CENTER, Screen::WIDTH / 2, Screen::HEIGHT / 2 + 30, 30, GetColor(255, 255, 255), "スペースキーで戻れます!");
+        TextUtil::DrawFixText(TextDrawType::CENTER, Screen::WIDTH / 2, Screen::HEIGHT / 2, 30, GetColor(247, 202, 77), GetColor(255, 255, 255), "ゲームクリア!", true);
+        TextUtil::DrawFixText(TextDrawType::CENTER, Screen::WIDTH / 2, Screen::HEIGHT / 2 + 30, 30, GetColor(255, 255, 255), GetColor(0, 0, 0), "スペースキーで戻れます!");
     }
 }
 
